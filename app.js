@@ -34,9 +34,11 @@ var app = new Vue({
       niveau: 1,
       nbrCarte: 6,
       win: 0,
+      bad: 0,
+      vie:100,
       onGame: false,
       carte: [], 
-      titre:"Reuninap",
+      titre:"Réuninap",
       slogan:"",
       essai1: "",
     },
@@ -58,6 +60,9 @@ var app = new Vue({
           this.noneCarte();
          
            var cl= setTimeout(this.clearCarte, 400, numCarte, e1);
+          this.bad++; 
+          this.vie-=10;
+          if(this.vie<=0&&this.niveau>=3){this.onGame=false;this.win=0;this.bad=0;this.vie=100;this.carte=[];this.essai1=""}
           
         }else{
 
@@ -66,7 +71,7 @@ var app = new Vue({
          
           let e = this.essai1;
 
-          if(this.niveau==1){
+          if(this.niveau==1||this.niveau==3){
           var re= setTimeout(this.laisserCarte, 400, numCarte, e);
         }else {
           var re= setTimeout(this.removeCarte, 400, numCarte, e);
@@ -106,7 +111,7 @@ var app = new Vue({
     this.win++;
     setTimeout(this.autoCarte, 500);
 
-    if(this.carte.length<=0){this.onGame=false;this.win=0;this.niveau++;};
+    if(this.carte.length<=0){this.onGame=false;this.win=0;this.niveau++;this.bad=0;this.vie=100;};
       },
 
       laisserCarte: function(numCarte, e){
@@ -125,7 +130,7 @@ var app = new Vue({
    this.autoCarte();
    
     this.win++;
-    if(this.win==this.nbrCarte){this.onGame=false;this.win=0;this.carte=[];this.niveau++;}
+    if(this.win==this.nbrCarte){this.onGame=false;this.win=0;this.carte=[];this.niveau++;this.bad=0;this.vie=100;}
     
       },
       
