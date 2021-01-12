@@ -12,22 +12,22 @@
     <div style="display:none" id="app">
  
  
-    <div v-if="titre" class="w3-container w3-red w3-monospace">
+    <div  v-if="!onGame&&titre"  class="w3-container w3-red w3-monospace">
   <h1 v-if="titre" >{{titre}}</h1> 
   <p v-if="slogan">{{slogan}}</p> 
 </div>
 
-<div class="w3-block w3-auto ">
+<div class="w3-auto pa">
 
-  <cartes v-for="car in carte" :nom="car" v-on:essai_carte=tryCard></cartes>
-</div>
+  <cartes v-for="car in carte"  :nom="car" v-on:essai_carte=tryCard></cartes>
+
 
     
-<p>Le nombre de carte est : {{ niveau }}</p>
-    <button v-on:click="createCarte(niveau)">creer carte</button>
-    <p v-if="carte.length>=1">{{ carte }}</p>
-    <input v-model="niveau" placeholder="niveau">
 
+  </div>
+  <div v-if="!onGame" class="w3-auto">
+    <button  class="w3-border w3-border-deep-orange w3-btn btn-centre" v-on:click="createCarte(niveau)">Commencer la partie</button>
+  </div>
 
     </div>
     <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js" ></script>

@@ -3,7 +3,7 @@
 Vue.component('cartes', {
   props: ['nom'],
 
-  template: '<img v-on:click="tryCarte(nom, $event)" class="w3-margin" :src="imageUrl()" :id="nom" />',
+  template: '<img v-on:click="tryCarte(nom, $event)" class="size-carte" :src="imageUrl()" :id="nom" />',
  
   methods:{
     
@@ -31,7 +31,8 @@ Vue.component('cartes', {
 var app = new Vue({
     el: '#app',
     data: {
-      niveau: 10,
+      niveau: 6,
+      onGame: false,
       carte: [], 
       titre:"Reuninap",
       slogan:"",
@@ -46,35 +47,24 @@ var app = new Vue({
 
         if(!e1){
         this.essai1=numCarte;
-        cart1.style="pointer-events:none";
+        this.noneCarte(numCarte);
         }
         else if (e1.substring(1, 2)!=numCarte.substring(1, 2))
         {
           
         
-          for(i=0;i<this.carte.length;i++){
-             let im=this.carte[i];
-             let img=document.getElementById(im);
-             
-              img.style="pointer-events:none";
-             
-           
-          }
+          this.noneCarte();
          
            var cl= setTimeout(this.clearCarte, 500, numCarte, e1);
           
         }else{
+
+          this.noneCarte();
           
-          for(i=0;i<this.carte.length;i++){
-            let im=this.carte[i];
-            let img=document.getElementById(im);
-             
-              img.style="pointer-events:auto";
-           
-          }
+         
           let e = this.essai1;
           var re= setTimeout(this.removeCarte, 500, numCarte, e);
-          this.essai1="";
+          
         }
         
       },
@@ -104,9 +94,43 @@ var app = new Vue({
     
     }
 
-      
-      },
 
+    this.essai1="";
+    
+
+    setTimeout(this.autoCarte, 500);
+
+    if(this.carte.length<=0){this.onGame=false};
+      },
+      
+      autoCarte: function(id){
+        if(!id){
+        for(i=0;i<this.carte.length;i++){
+          let im=this.carte[i];
+          let img=document.getElementById(im);
+           
+            img.style="pointer-events:auto";
+         
+        } }
+        else {
+          let img=document.getElementById(id);
+           
+          img.style="pointer-events:auto";}
+      },
+      noneCarte: function(id){
+        if(!id){
+        for(i=0;i<this.carte.length;i++){
+          let im=this.carte[i];
+          let img=document.getElementById(im);
+           
+            img.style="pointer-events:none";
+         
+        } }
+        else {
+          let img=document.getElementById(id);
+           
+          img.style="pointer-events:none";}
+      },
       clearCarte: function(numCarte, essai1){
         var cart = document.getElementById(numCarte);
         var essai= document.getElementById(essai1);
@@ -116,8 +140,7 @@ var app = new Vue({
         cart.src="img/card.png";
         essai.src="img/card.png";
         
-        console.log(cart);
-        console.log(essai);
+
         this.essai1="";
         cart.style="pointer-events:auto";
         essai.style="pointer-events:auto";
@@ -138,7 +161,7 @@ var app = new Vue({
           this.carte.push(1+""+i);
       }
       this.carte=this.shuffle(this.carte);
-    
+      this.onGame=true;
       },
       shuffle: function (array) {
         var currentIndex = array.length, temporaryValue, randomIndex;
