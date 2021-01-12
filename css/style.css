@@ -5,12 +5,29 @@
     width: 14%;
 }
 
-.btn-centre{
+.centre{
     display: block;
+    text-align: center;
     margin-top: 30px;
     margin-right: 25%;
     margin-left: 25%;
     width: 50%;
+}
+
+.bar-vie{
+    border: 5px solid rgb(204, 17, 17);
+    display: block;
+    text-align: center;
+    margin-top: -30px;
+    border-radius: 4px;
+    
+    margin-left: 0.5%;
+    width: 95%;
+}
+
+.bar-vie div{
+    height:20px;
+    background-color: rgb(235, 65, 35);
 }
 
 .pa{
