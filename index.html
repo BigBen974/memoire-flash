@@ -19,6 +19,10 @@
 
 <div class="w3-auto pa">
 
+  <div v-if="niveau>=3&&onGame" class="bar-vie" >
+    <div :style="{width: vie + '%'}"></div>
+  </div>
+
   <cartes v-for="car in carte"  :nom="car" v-on:essai_carte=tryCard></cartes>
 
 
@@ -26,8 +30,11 @@
 
   </div>
   <div v-if="!onGame" class="w3-auto">
-    <button  class="w3-border w3-border-deep-orange w3-btn btn-centre" v-on:click="createCarte(nbrCarte)">Commencer la partie</button>
+    <div class="centre"><h3>Vous êtes au niveau {{ niveau }} </h3></div>
+    <button  class="w3-border w3-border-deep-orange w3-btn centre" v-on:click="createCarte(nbrCarte)">Commencer la partie</button>
   </div>
+
+
 
     </div>
     <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js" ></script>
