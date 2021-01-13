@@ -12,17 +12,27 @@
     <div style="display:none" id="app">
  
  
-    <div  v-if="!onGame&&titre"  class="w3-container w3-red w3-monospace">
+    <div  v-if="!onGame&&titre"  class="w3-container red-carte w3-monospace">
   <h1 v-if="titre" >{{titre}}</h1> 
   <p v-if="slogan">{{slogan}}</p> 
 </div>
 
 <div class="w3-auto pa">
 
-  <div v-if="niveau>=3&&onGame" class="bar-vie" >
-    <div :style="{width: vie + '%'}"></div>
+<div v-if="onGame" class="bars">
+  <div class="bar-vie-block" >
+  <img  :src="'img/heart'+ vieInOff + '.svg'" class="coeur-vie"/> 
+  <div  :class="'bar-vie'+ vieInOff" >
+  <div :style="{width: vie + '%'}"></div>
   </div>
-
+</div>
+<div class="bar-time-block" style="margin-left:5%;">
+  <img  :src="'img/hourglass'+ inOff + '.svg'" class="sablier-time"/>
+  <div  :class="'bar-time'+ inOff" >
+   <div :style="{width: vie + '%'}"></div>
+  </div>
+</div>
+</div>
   <cartes v-for="car in carte"  :nom="car" v-on:essai_carte=tryCard></cartes>
 
 

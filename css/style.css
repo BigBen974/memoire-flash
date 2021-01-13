@@ -8,31 +8,102 @@
 .centre{
     display: block;
     text-align: center;
-    margin-top: 30px;
+    margin-top: 20px;
     margin-right: 25%;
     margin-left: 25%;
     width: 50%;
 }
+.bars
+{
+display: inline-block;  
+width: 96%;  
+margin: 0 auto 0 auto;
 
+text-align: center;
+
+}
+.bar-vie-block{
+
+    display: inline;
+
+
+}
 .bar-vie{
-    border: 5px solid rgb(204, 17, 17);
-    display: block;
+    background-color: #e99791;
+    display: inline-block;
     text-align: center;
-    margin-top: -30px;
-    border-radius: 4px;
-    
-    margin-left: 0.5%;
-    width: 95%;
+
+    width: 35%;
 }
 
 .bar-vie div{
     height:20px;
-    background-color: rgb(235, 65, 35);
+    background-color:#e94236;
 }
+.bar-vie-off{
+    background-color: #bbb2b2;
+    display: inline-block;
+    text-align: center;
+
+    width: 35%;
+}
+
+
+.bar-vie-off div{
+    height:20px;
+    background-color:#bbb2b2;
+}
+.coeur-vie{
+
+    width: 20px;
+    height: 20px;
+     margin-top: -12px;   
+     margin-right: 1%; 
+}
+.bar-time-block{
+
+    display: inline;
+
+
+}
+.bar-time{
+    background-color:#94c6db;
+    display: inline-block;
+    text-align: center;
+
+    width: 35%;
+}
+
+.bar-time div{
+    height:20px;
+    background-color: #289DD1;
+}
+.bar-time-off{
+    background-color: #bbb2b2;
+    display: inline-block;
+    text-align: center;
+
+    width: 35%;
+}
+
+
+.bar-time-off div{
+    height:20px;
+    background-color:#bbb2b2;
+}
+.sablier-time{
+
+    width: 20px;
+    height: 20px;
+     margin-top: -12px;   
+     margin-right: 1%; 
+}
+
+.red-carte,.hover-red-carte:hover{color:#fff!important;background-color:#e94236!important}
 
 .pa{
  
     padding-left: 20px;
-    padding-top: 50px;
+    padding-top: 20px;
 
 }

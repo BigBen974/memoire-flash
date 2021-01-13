@@ -41,6 +41,8 @@ var app = new Vue({
       titre:"Réuninap",
       slogan:"",
       essai1: "",
+      inOff:"-off",
+      vieInOff:"-off",
     },
     methods:{
 
@@ -61,8 +63,11 @@ var app = new Vue({
          
            var cl= setTimeout(this.clearCarte, 400, numCarte, e1);
           this.bad++; 
-          this.vie-=10;
-          if(this.vie<=0&&this.niveau>=3){this.onGame=false;this.win=0;this.bad=0;this.vie=100;this.carte=[];this.essai1=""}
+          if(this.niveau>=3){ this.vie-=10;}
+          if(this.vie<=0&&this.niveau>=3){
+            this.onGame=false;this.win=0;this.bad=0;this.vie=100;
+            this.carte=[];this.essai1="";this.inOff="-off";this.vieInOff="-off";
+          }
           
         }else{
 
@@ -111,7 +116,11 @@ var app = new Vue({
     this.win++;
     setTimeout(this.autoCarte, 500);
 
-    if(this.carte.length<=0){this.onGame=false;this.win=0;this.niveau++;this.bad=0;this.vie=100;};
+    if(this.carte.length<=0){
+      this.onGame=false;this.win=0;this.niveau++;
+      this.bad=0;this.vie=100;this.essai1="";
+      this.inOff="-off";this.vieInOff="-off";
+    }
       },
 
       laisserCarte: function(numCarte, e){
@@ -130,7 +139,12 @@ var app = new Vue({
    this.autoCarte();
    
     this.win++;
-    if(this.win==this.nbrCarte){this.onGame=false;this.win=0;this.carte=[];this.niveau++;this.bad=0;this.vie=100;}
+    if(this.win==this.nbrCarte){
+      this.onGame=false;this.win=0;
+      this.carte=[];this.niveau++;this.bad=0;
+      this.vie=100;this.essai1="";
+      this.inOff="-off";this.vieInOff="-off";
+    }
     
       },
       
@@ -188,6 +202,7 @@ var app = new Vue({
       }
       this.carte=this.shuffle(this.carte);
       this.onGame=true;
+      if(this.niveau>=3){this.vieInOff=""; }
       },
       shuffle: function (array) {
         var currentIndex = array.length, temporaryValue, randomIndex;
