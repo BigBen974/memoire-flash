@@ -296,16 +296,16 @@ var app = new Vue({
   )
 
   function preloadImage(){
-        let img = document.getElementById('preload'); 
-        img.style.display="";
+   
+        
         for (i=0;i<=15;i++){
-          let url="../img/fleches/"+i+".png";
+          var img = new Image(); 
+          var url="../img/fleches/"+i+".png";
           img.src=url;
         }
-        img.style.display="none";
+       
   }
-
+  preloadImage();
  var app = document.getElementById('app');
 
  app.style.display="";
- preloadImage();
