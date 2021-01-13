@@ -298,37 +298,12 @@ var app = new Vue({
   function preloadImage(){
    
         
-      //  for (i=0;i<=15;i++){
-       ///   var img = new Image(); 
-      //    var url="../img/fleches/"+i+".png";
-      //    img.src=url;
-      //  }
-
-      var img = new Image(); 
-      var url="../img/fleches/0.png";
-      img.src=url;
-
-        var img1 = new Image(); 
-          var url1="../img/fleches/1.png";
-          img1.src=url1;
-
-          var img2 = new Image(); 
-          var url2="../img/fleches/2.png";
-          img2.src=url2;
-
-          var img3 = new Image(); 
-          var url3="../img/fleches/3.png";
-          img3.src=url3;
-
-          var img4 = new Image(); 
-          var url4="../img/fleches/4.png";
-          img4.src=url4;
-
-          var img5 = new Image(); 
-          var url5="../img/fleches/5.png";
-          img5.src=url5;
-
-
+        for (i=0;i<=15;i++){
+          var img = new Image(); 
+          var url="../app/img/fleches/"+i+".png";
+          img.src=url;
+        }
+        
        
   }
   preloadImage();
