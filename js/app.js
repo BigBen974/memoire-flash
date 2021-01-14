@@ -223,8 +223,8 @@ var app = new Vue({
         this.niveau==13||this.niveau==14||this.niveau==17||this.niveau==18||this.niveau==19||this.niveau==20||
         this.niveau==23||this.niveau==24||this.niveau==27||this.niveau>=28){this.vieInOff=""; }
       if(this.niveau==5||this.niveau==6||this.niveau==7||this.niveau==8||this.niveau==9||this.niveau==10||
-        this.niveau==13||this.niveau==14||this.niveau==17||this.niveau==18||this.niveau==19||this.niveau==20||
-        this.niveau==23||this.niveau==24||this.niveau==27||this.niveau>=28){
+        this.niveau==15||this.niveau==16||this.niveau==17||this.niveau==18||this.niveau==19||this.niveau==20||
+        this.niveau==25||this.niveau==26||this.niveau==27||this.niveau>=28){
         this.timeInOff="";
         let timestamp =Date.now();
         timestamp=Math.floor(timestamp/1000);
