@@ -313,7 +313,7 @@ var app = new Vue({
         
         for (i=0;i<=15;i++){
           var img = new Image(); 
-          var url="../img/fleches/"+i+".png";
+          var url="../app/img/fleches/"+i+".png";
           img.src=url;
         }
         
