@@ -1,15 +1,20 @@
 
 
 Vue.component('cartes', {
-  props: ['nom'],
+  props: ['nom', 'size_carte'],
 
-  template: '<img v-on:click="tryCarte(nom, $event)" class="size-carte" :src="imageUrl()" :id="nom" />',
+  template: '<img v-on:click="tryCarte(nom, $event)" :class="sizeCartes(size_carte)" :src="imageUrl()" :id="nom" />',
  
   methods:{
     
     imageUrl: function (nom) {
       if(nom) return "img/fleches/"+nom.substring(1, 2)+".png"
       else return "img/card.png"
+    },
+    sizeCartes: function (size_carte) {
+      console.log(size_carte)
+      return "size-carte-"+size_carte
+
     },
     tryCarte: function (numCarte, event) {
 
@@ -31,7 +36,7 @@ var app = new Vue({
     el: '#app',
     data: {
       niveau: 1,
-      nbrCarte: 6,
+      nbrCarte: 4,
       win: 0,
       bad: 0,
       vie:100,
@@ -75,7 +80,10 @@ var app = new Vue({
            this.noneCarte();
           let e = this.essai1;
 
-          if(this.niveau==1||this.niveau==3||this.niveau==5||this.niveau==7){
+          if(this.niveau==1||this.niveau==3||this.niveau==5||this.niveau==7||
+            this.niveau==11||this.niveau==13||this.niveau==15||this.niveau==17||
+            this.niveau==21||this.niveau==23||this.niveau==25||this.niveau==27
+            ){
           var re= setTimeout(this.laisserCarte, 400, numCarte, e);
         }else {
           var re= setTimeout(this.removeCarte, 400, numCarte, e);
@@ -148,6 +156,7 @@ var app = new Vue({
           this.vie=100;this.essai1="";
           this.timeInOff="-off";this.vieInOff="-off";
           this.stopTimer=0;this.time=0;this.temps=100;
+          if(this.niveau==11||this.niveau==21)this.nbrCarte++;
         }else{       
                this.onGame=false;this.win=0;this.bad=0;this.vie=100;
           this.carte=[];this.essai1="";this.timeInOff="-off";
@@ -210,8 +219,12 @@ var app = new Vue({
       }
       this.carte=this.shuffle(this.carte);
       this.onGame=true;
-      if(this.niveau==3||this.niveau==4||this.niveau==7||this.niveau>=8){this.vieInOff=""; }
-      if(this.niveau==5||this.niveau==6||this.niveau==7||this.niveau>=8){
+      if(this.niveau==3||this.niveau==4||this.niveau==7||this.niveau==8||this.niveau==9||this.niveau==10||
+        this.niveau==13||this.niveau==14||this.niveau==17||this.niveau==18||this.niveau==19||this.niveau==20||
+        this.niveau==23||this.niveau==24||this.niveau==27||this.niveau>=28){this.vieInOff=""; }
+      if(this.niveau==5||this.niveau==6||this.niveau==7||this.niveau==8||this.niveau==9||this.niveau==10||
+        this.niveau==13||this.niveau==14||this.niveau==17||this.niveau==18||this.niveau==19||this.niveau==20||
+        this.niveau==23||this.niveau==24||this.niveau==27||this.niveau>=28){
         this.timeInOff="";
         let timestamp =Date.now();
         timestamp=Math.floor(timestamp/1000);
@@ -300,7 +313,7 @@ var app = new Vue({
         
         for (i=0;i<=15;i++){
           var img = new Image(); 
-          var url="../app/img/fleches/"+i+".png";
+          var url="../img/fleches/"+i+".png";
           img.src=url;
         }
         

@@ -13,7 +13,7 @@
  
  
     <div  v-if="!onGame&&titre"  class="w3-container red-carte w3-monospace">
-  <h1 v-if="titre" >{{titre}}</h1> 
+  <h4 v-if="titre" >{{titre}}</h4> 
   <p v-if="slogan">{{slogan}}</p> 
 </div>
 
@@ -33,7 +33,7 @@
   </div>
 </div>
 </div>
-  <cartes v-for="car in carte"  :nom="car" v-on:essai_carte=tryCard></cartes>
+  <cartes v-for="car in carte"  :nom="car" :size_carte="nbrCarte" v-on:essai_carte=tryCard></cartes>
 
 
     
