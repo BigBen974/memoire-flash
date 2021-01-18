@@ -12,7 +12,6 @@ Vue.component('cartes', {
       else return "img/card.png"
     },
     sizeCartes: function (size_carte) {
-      console.log(size_carte)
       return "size-carte-"+size_carte
 
     },
@@ -35,6 +34,7 @@ Vue.component('cartes', {
 var app = new Vue({
     el: '#app',
     data: {
+
       niveau: 1,
       nbrCarte: 4,
       win: 0,
@@ -45,7 +45,6 @@ var app = new Vue({
       onGame: false,
       carte: [], 
       titre:"Réuninap",
-      slogan:"",
       essai1: "",
       timeInOff:"-off",
       vieInOff:"-off",
@@ -65,15 +64,19 @@ var app = new Vue({
         else if (e1.substring(1, 2)!=numCarte.substring(1, 2))
         {
           this.noneCarte();
-         
-           var cl= setTimeout(this.clearCarte, 400, numCarte, e1);
-          this.bad++; 
+          this.bad++;
+          
           if(!this.vieInOff){ 
             this.vie-=10;
           
           if(this.vie<=0){
             this.resetGame(false);
+          }else{
+            var cl= setTimeout(this.clearCarte, 400, numCarte, e1); 
           }
+          }else{
+          var cl= setTimeout(this.clearCarte, 400, numCarte, e1);
+          
           }
           
         }else{
@@ -172,13 +175,13 @@ var app = new Vue({
           let img=document.getElementById(im);
 
           let srcCarte=img.src.substring(img.src.length-12);
-          console.log(srcCarte);
+         
            if(srcCarte=="img/card.png"){ img.style="pointer-events:auto"; }
         } }
         else {
           let img=document.getElementById(id);
           let srcCarte=img.src.substring(img.src.length-12);
-          console.log(srcCarte);
+          
           if(srcCarte=="img/card.png"){ img.style="pointer-events:auto"; }
         }
       },
@@ -213,9 +216,11 @@ var app = new Vue({
       },
       createCarte: function (numCarte) {
         this.carte=[];
+        var r=Math.floor(Math.random() * ((11-numCarte) - 0 + 1) + 0);
+       
         for (var i=0; i<numCarte;i++){
-          this.carte.push(0+""+i);
-          this.carte.push(1+""+i);
+          this.carte.push(0+""+(i+r));
+          this.carte.push(1+""+(i+r));
       }
       this.carte=this.shuffle(this.carte);
       this.onGame=true;
@@ -255,13 +260,13 @@ var app = new Vue({
       getTimer: function(){
 
         var seconde=null;
-        var affichage=30;
+        var limit=30;
         var timestamp =Date.now();
         timestamp=Math.floor(timestamp/1000);
         var time = this.time;
         if(time!=0){
         var diff=timestamp-time;
-        var decompte=30-diff;
+        var decompte=limit-diff;
       
         
         seconde=decompte;
@@ -269,13 +274,12 @@ var app = new Vue({
         
         affichage=seconde;
 
-        this.temps=seconde/0.3;
-        console.log(affichage);
-        console.log(this.temps);
+        this.temps=seconde/(limit/100);
 
-        if(diff>=30){
+
+        if(diff>=limit){
           
-          console.log(affichage);
+
           this.stopTimer=1;
           this.minuteur(true);
           this.resetGame(false);
@@ -296,7 +300,7 @@ var app = new Vue({
          
       , 1000);
        }
-       console.log(this.stopTimer);
+      
             if(this.stopTimer==1){
               clearInterval(this.t); this.stopTimer==0;
             

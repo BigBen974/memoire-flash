@@ -1,3 +1,14 @@
+.home{
+    display: block;
+    text-align: center;
+    background: #061a22;
+    background: linear-gradient(0deg, #061a22 0%, #2490be 15%, #289dd1 100%); 
+color:#fff!important;
+height: 100vh;
+padding-top: 10%;
+
+
+}
 .size-carte-6{
     display: inline-block;
     margin-top: 10px;
@@ -22,10 +33,12 @@
 .centre{
     display: block;
     text-align: center;
-    margin-top: 20px;
+    padding-top: 10%;
     margin-right: 25%;
     margin-left: 25%;
     width: 50%;
+ 
+ 
 }
 .bars
 {
@@ -55,7 +68,7 @@ text-align: center;
     background-color:#e94236;
 }
 .bar-vie-off{
-    background-color: #bbb2b2;
+    background-color: #ececec;
     display: inline-block;
     text-align: center;
 
@@ -65,7 +78,7 @@ text-align: center;
 
 .bar-vie-off div{
     height:20px;
-    background-color:#bbb2b2;
+    background-color:#ececec;
 }
 .coeur-vie{
 
@@ -93,7 +106,7 @@ text-align: center;
     background-color: #289DD1;
 }
 .bar-time-off{
-    background-color: #bbb2b2;
+    background-color: #ececec;
     display: inline-block;
     text-align: center;
 
@@ -103,7 +116,7 @@ text-align: center;
 
 .bar-time-off div{
     height:20px;
-    background-color:#bbb2b2;
+    background-color:#ececec;
 }
 .sablier-time{
 
@@ -116,8 +129,34 @@ text-align: center;
 .red-carte,.hover-red-carte:hover{color:#fff!important;background-color:#e94236!important}
 
 .pa{
- 
+    
     padding-left: 20px;
     padding-top: 20px;
+
+}
+.btn_play{
+    
+    text-align: center;
+  
+    margin:auto;
+    width: 200px;
+    min-height: 40px;
+    border-radius: 10px;
+    border: none;
+    padding: 5px;
+
+}
+.btn_play:hover{
+    
+
+    border: 5px solid #f5c74e ;
+
+}
+
+.logo{
+    
+    
+    min-width: 200px;
+    width: 30%;
 
 }
