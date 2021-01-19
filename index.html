@@ -32,7 +32,7 @@
 </div>
 </div>
 
-  <cartes v-for="car in carte"  :nom="car" :size_carte="nbrCarte" v-on:essai_carte=tryCard></cartes>
+  <cartes v-for="car in carte"  :nom="car" :size_carte="nbrCarte" :carte="carteActive" v-on:essai_carte=tryCard></cartes>
 
 
     
@@ -45,7 +45,10 @@
      
       <h3 v-if="niveau"><b>Niveau {{ niveau }}</b></h3>
     
-    <button  class="btn_play" v-on:click="createCarte(nbrCarte)"><b>commencer la partie</b></button>
+    <button  class="btn_play" v-on:click="createCarte(nbrCarte)"><b>commencer la partie</b></button><br />
+
+    <dos_cartes v-for="dosCar in dosCarte"  :nom="dosCar" :niveau="niveau" :carte="carteActive" v-on:set_carte=setDosCarte></dos_cartes>
+
   </div>
 
 

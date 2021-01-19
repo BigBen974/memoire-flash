@@ -30,6 +30,12 @@ padding-top: 10%;
     width: 14%;
 }
 
+.size-carte-dos{
+    display: inline-block;
+    margin: 2% 1%;
+    width: 8%;
+}
+
 .centre{
     display: block;
     text-align: center;

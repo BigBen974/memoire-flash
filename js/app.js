@@ -1,15 +1,15 @@
 
 
 Vue.component('cartes', {
-  props: ['nom', 'size_carte'],
+  props: ['nom', 'size_carte','carte'],
 
-  template: '<img v-on:click="tryCarte(nom, $event)" :class="sizeCartes(size_carte)" :src="imageUrl()" :id="nom" />',
+  template: '<img v-on:click="tryCarte(nom, $event)" :class="sizeCartes(size_carte)" :src="imageUrl(null, carte )" :id="nom" />',
  
   methods:{
     
-    imageUrl: function (nom) {
+    imageUrl: function (nom, carte ) {
       if(nom) return "img/fleches/"+nom.substring(1, 2)+".png"
-      else return "img/card.png"
+      else return "img/card-"+carte+".png"
     },
     sizeCartes: function (size_carte) {
       return "size-carte-"+size_carte
@@ -19,7 +19,7 @@ Vue.component('cartes', {
 
       if (event) {
         
-        event.target.src=this.imageUrl(numCarte)
+        event.target.src=this.imageUrl(numCarte, null)
  
        this.$emit('essai_carte', numCarte)
        
@@ -31,11 +31,79 @@ Vue.component('cartes', {
 
 })
 
+
+
+Vue.component('dos_cartes', {
+  props: ['nom', 'niveau', 'carte'],
+
+  template: '<img v-on:click="setActiveCarte(nom, $event)" :id="nom" class="size-carte-dos" :style="styleA(nom,carte,niveau)" :src="imageUrl(nom,niveau)"   />',
+ 
+  methods:{
+    
+    imageUrl: function (nom, niveau) {
+      if(nom==0){ 
+     
+        return "img/card.png";}
+        else if(nom==1&&niveau>=5){ 
+  
+          return "img/card-1.png";}
+      else {return "img/card-off.png";}
+
+    },
+    styleA: function (nom,carteActive,niveau) {
+    
+      if(nom==carteActive){ 
+        
+        return "pointer-events:auto;width:8.5%;border:2px solid #f5c74e;background-color:#f5c74e;border-radius:5px";
+        
+        }
+        if(niveau<5&&nom>0){ 
+        
+          return "pointer-events:none";
+          
+          }
+          if(niveau<10&&nom>1){ 
+        
+            return "pointer-events:none";
+            
+            }
+            if(niveau<100&&nom>1){ 
+        
+              return "pointer-events:none";
+              
+              }
+
+      
+       
+         
+       
+
+    },
+    setActiveCarte: function (numCarte, event) {
+      
+
+      if (event) {
+        
+       
+       this.$emit('set_carte', numCarte)
+       
+      } 
+      
+    },
+
+
+  },
+
+
+
+
+})
+
 var app = new Vue({
     el: '#app',
     data: {
 
-      niveau: 1,
+      niveau: 10,
       nbrCarte: 4,
       win: 0,
       bad: 0,
@@ -43,15 +111,17 @@ var app = new Vue({
       temps:100,
       time:0,
       onGame: false,
-      carte: [], 
-      titre:"Réuninap",
+      carte: [],
+      dosCarte: [],
+      titre:"Memory Flash",
       essai1: "",
       timeInOff:"-off",
       vieInOff:"-off",
       stopTimer:0,
+      carteActive:0,
     },
     methods:{
-
+    
 
       tryCard: function (numCarte) {
         var cart1 = document.getElementById(numCarte);
@@ -98,8 +168,8 @@ var app = new Vue({
       removeCarte: function(numCarte, e){
         let cart1= document.getElementById(numCarte);
         let e1 = document.getElementById(e);
-        cart1.src="img/card.png";
-        e1.src="img/card.png";
+        cart1.src="img/card-"+this.carteActive+".png";
+        e1.src="img/card-"+this.carteActive+".png";
          
         for( var i = 0; i < this.carte.length; i++){ 
     
@@ -174,15 +244,15 @@ var app = new Vue({
           let im=this.carte[i];
           let img=document.getElementById(im);
 
-          let srcCarte=img.src.substring(img.src.length-12);
-         
-           if(srcCarte=="img/card.png"){ img.style="pointer-events:auto"; }
+          let srcCarte=img.src.substring(img.src.length-14);
+          srcCarte=srcCarte.substring(8,0);
+           if(srcCarte=="img/card"){ img.style="pointer-events:auto"; }
         } }
         else {
           let img=document.getElementById(id);
-          let srcCarte=img.src.substring(img.src.length-12);
-          
-          if(srcCarte=="img/card.png"){ img.style="pointer-events:auto"; }
+          let srcCarte=img.src.substring(img.src.length-14);
+          srcCarte=srcCarte.substring(8,0);
+          if(srcCarte=="img/card"){ img.style="pointer-events:auto"; }
         }
       },
       noneCarte: function(id){
@@ -205,8 +275,8 @@ var app = new Vue({
 
        
 
-        cart.src="img/card.png";
-        essai.src="img/card.png";
+        cart.src="img/card-"+this.carteActive+".png";
+        essai.src="img/card-"+this.carteActive+".png";
         
 
         this.essai1="";
@@ -306,11 +376,34 @@ var app = new Vue({
             
             }
     }
-    ,}
+    ,
+    createDosCarte: function (numCarte) {
+      this.dosCarte=[];
+      
+      for (var i=0; i<numCarte;i++){
+        this.dosCarte.push(i);
+   
+    }
+   
+  },
+    setDosCarte: function (id) {
+    
+        this.carteActive=id;
+   
+         console.log(this.carteActive)  
+       
+        
+          
+          
+        },
+  }
+ 
   }
   
   
   )
+;
+app.createDosCarte(6);
 
   function preloadImage(){
    
@@ -324,6 +417,6 @@ var app = new Vue({
        
   }
   preloadImage();
- var app = document.getElementById('app');
+ var appp = document.getElementById('app');
 
- app.style.display="";
+ appp.style.display="";
