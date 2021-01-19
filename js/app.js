@@ -103,7 +103,7 @@ var app = new Vue({
     el: '#app',
     data: {
 
-      niveau: 10,
+      niveau: 1,
       nbrCarte: 4,
       win: 0,
       bad: 0,
